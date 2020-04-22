@@ -7,7 +7,7 @@ from database.users import User
 def hello():
     id = request.args.get("id")
     stmt = text("SELECT * FROM users where id=%s" % id) # Query is constructed based on user inputs
-    query = SQLAlchemy().session.query(id) # Noncompliant
+    query = SQLAlchemy().session.query(stmt) # Noncompliant
     user = query.one()
     return "Hello %s" % user.username
 
