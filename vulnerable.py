@@ -2,5 +2,4 @@ from hashlib import pbkdf2_hmac
 import os
 
 password = raw_input()
-hash = pbkdf2_hmac('sha1', password, 'static salt', 1024)
-
+pbkdf2_hmac('sha256', password, 'abcd1234', 1024, 128)
