@@ -1,14 +1,7 @@
-from flask import request, text
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import text
-from database.users import User
+from hashlib import pbkdf2_hmac
+import os
 
-@app.route('hello')
-def hello():
-    id = request.args.get("id")
-    stmt = text("SELECT * FROM users where id=%s" % id) # Query is constructed based on user inputs
-    query = SQLAlchemy().session.query("SELECT 1") # Noncompliant
-    user = query.one()
-    return "Hello %s" % user.username
-
+password = raw_input()
+salt = os.urandom(8)
+hash = pbkdf2_hmac('sha1', password, salt, 1024)
 
