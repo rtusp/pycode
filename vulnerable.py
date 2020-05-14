@@ -2,4 +2,5 @@ from hashlib import pbkdf2_hmac
 import os
 
 password = raw_input()
-pbkdf2_hmac('sha256', password, 'abcd1234', 1024, 128)
+salt = os.urandom(8)
+pbkdf2_hmac('sha256', password, salt, 1024, 128)
